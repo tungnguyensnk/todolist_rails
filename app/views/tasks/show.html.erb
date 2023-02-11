@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @task %>
+
+<div>
+  <%= link_to "Edit this task", edit_task_path(@task), class:"btn btn-primary" %> |
+  <%= link_to "Back to tasks", tasks_path, class:"btn btn-secondary" %>
+
+  
+</div>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_02_10_135637) do
+ActiveRecord::Schema[7.0].define(version: 2023_02_11_120615) do
   create_table "group", force: :cascade do |t|
     t.integer "creator_id"
     t.text "group_name"
@@ -48,6 +48,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_10_135637) do
     t.integer "task_id"
     t.integer "group_user_id"
     t.text "deadline"
+  end
+
+  create_table "tasks", force: :cascade do |t|
+    t.string "description"
+    t.boolean "complete", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "user", force: :cascade do |t|
