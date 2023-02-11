@@ -1,14 +1,28 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light container-fluid">
     <a class="navbar-brand" href="/">Todo List</a>
+    <% if user_signed_in? %>
     <ul class="navbar-nav mr-auto">
         <li class="nav-item active px-2">
-            <a class="nav-link" href="/">Home</a>
+            <a class="nav-link" href="/">ホーム</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="/">Signin</a>
+            <p>こんにちは、<%= link_to current_user.name, users_show_path %></p>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="/">Signup</a>
+            <%= link_to "ログアウト", destroy_user_session_path, method: 'delete' %>
         </li>
     </ul>
+    <% else %>
+    <ul class="navbar-nav mr-auto"> 
+        <li class="nav-item active px-2">
+            <a class="nav-link" href="/">ホーム</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/users/sign_in">サインイン</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/users/sign_up">ユーザー登録</a>
+        </li>
+    </ul>
+    <% end %>
 </nav>
