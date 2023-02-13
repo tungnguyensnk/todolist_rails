@@ -1,0 +1,15 @@
+<div id="<%= dom_id task %>" class="card m-4" style="width: 18rem;">
+  <div class="card-body">
+    <h4 class="card-title"><strong><%= task.name %></strong></h4>
+    <% if task.group %>
+      <p class="card-text">
+        <strong>Task in group:</strong>
+        <%= task.group.name %>
+      </p>
+    <% end %>
+    <p class="card-text"><%= task.description %></p>
+    <p>
+      <%= link_to "Show this task", task %>
+    </p>
+  </div>
+</div>

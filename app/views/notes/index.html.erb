@@ -1,0 +1,11 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Your notes</h1>
+
+<div id="notes" class="d-flex p-2">
+  <% @notes.each do |note| %>
+    <%= render note %>
+  <% end %>
+</div>
+
+<%= link_to "Create new note", new_note_path %>
