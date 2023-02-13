@@ -1,0 +1,8 @@
+<h1>プロフィール</h1>
+<p><label>メールアドレス:</label> <%= current_user.email %></p>
+<p><label>名前:</label> <%= current_user.name %></p>
+<p><label>年齢:</label> <%= current_user.age %></p>
+<% if current_user.avatar.attached? %>
+    <label>Avatar:</label>
+    <%= image_tag current_user.avatar, width: "200" %>
+<% end %>
