@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_02_11_055159) do
+ActiveRecord::Schema[7.0].define(version: 2023_02_13_042640) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -39,22 +39,22 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_11_055159) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
-  create_table "group", force: :cascade do |t|
-    t.integer "creator_id"
-    t.text "group_name"
-    t.text "invite_code"
-  end
-
-  create_table "group_user", force: :cascade do |t|
-    t.integer "group_id"
-    t.integer "user_id"
-  end
-
-  create_table "note", force: :cascade do |t|
-    t.integer "user_id"
+  create_table "groups", force: :cascade do |t|
+    t.string "name"
     t.text "description"
-    t.text "created_at"
-    t.text "updated_at"
+    t.string "invite_code"
+    t.integer "creator_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "memberships", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "group_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["group_id"], name: "index_memberships_on_group_id"
+    t.index ["user_id"], name: "index_memberships_on_user_id"
   end
 
   create_table "notes", force: :cascade do |t|
@@ -64,24 +64,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_11_055159) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "task", force: :cascade do |t|
+  create_table "tasks", force: :cascade do |t|
+    t.string "name"
     t.text "description"
-    t.integer "done"
-    t.text "create_at"
-    t.text "updated_at"
-    t.integer "user_id"
-  end
-
-  create_table "task_group_user", id: false, force: :cascade do |t|
-    t.integer "task_id"
-    t.integer "group_user_id"
-    t.text "deadline"
-  end
-
-  create_table "user", force: :cascade do |t|
-    t.text "username", null: false
-    t.text "password", null: false
-    t.text "name"
+    t.date "due_date"
+    t.integer "group_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -100,11 +89,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_11_055159) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "group", "user", column: "creator_id", primary_key: "id"
-  add_foreign_key "group_user", "group", primary_key: "id", on_update: :cascade, on_delete: :cascade
-  add_foreign_key "group_user", "user", primary_key: "id"
-  add_foreign_key "note", "user", primary_key: "id", on_update: :cascade, on_delete: :cascade
-  add_foreign_key "task", "user", primary_key: "id", on_update: :cascade, on_delete: :cascade
-  add_foreign_key "task_group_user", "group_user", primary_key: "id"
-  add_foreign_key "task_group_user", "task", primary_key: "id"
+  add_foreign_key "memberships", "groups"
+  add_foreign_key "memberships", "users"
 end

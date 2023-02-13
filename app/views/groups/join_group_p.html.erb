@@ -1,0 +1,12 @@
+<p style="color: green"><%= notice %></p>
+<p> Join group
+</p>
+<%= form_with method: :post do |form| %>
+  <div>
+    <%= form.label :invite_code %>
+    <%= form.text_field :invite_code %>
+  </div>
+  <div>
+    <%= form.submit "Join", class: "btn btn-info" %>
+  </div>
+<% end %>
