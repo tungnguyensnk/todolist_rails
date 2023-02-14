@@ -25,13 +25,13 @@
           <td style="width: 20px">
             <%= link_to 'Edit', edit_group_path(group),class:"btn btn-danger" %>
           </td>
-          <td><p class="btn btn-info"><%= add_task_link(group) %></p></td>
+          <td><p class="btn btn-outline-warning"><%= add_task_link(group) %></p></td>
           <!-- create task for group -->
         <% end %>
     <% end %>
     </tbody>
   </table>
 <% end %>
-<%= link_to "New group", new_group_path, class:"btn btn-info"%>
+<%= link_to "New group", new_group_path, class:"btn btn-success"%>
 <br/>
-<p class="btn btn-info" style="margin-top: 5px"><%= join_group_p %></p>
+<p class="btn btn-outline-warning" style="margin-top: 5px"><%= join_group_p %></p>

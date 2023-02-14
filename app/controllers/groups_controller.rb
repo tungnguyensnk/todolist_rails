@@ -94,12 +94,12 @@ class GroupsController < ApplicationController
     begin
       # check if the user is already a member of the group
       if @group.memberships.find_by(user_id: current_user.id) != nil
-        if @group.memberships.find_by(user_id: current_user.id).user_id == current_user.id
+        # if @group.memberships.find_by(user_id: current_user.id).user_id == current_user.id
           redirect_to group_url(@group), notice: "You are already a member of the group."
         else
           @group.memberships.create(user_id: current_user.id)
           redirect_to group_url(@group), notice: "You are now a member of the group."
-        end
+        # end
       end
     rescue
       # reload the page with an error message
