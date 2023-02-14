@@ -5,15 +5,15 @@
         <li class="nav-item active px-2">
             <a class="nav-link" href="/">ホーム</a>
         </li>
-        <li class="nav-item">
-            <p>こんにちは、<%= link_to current_user.name, users_show_path %></p>
+        <li class="nav-item px-2 pt-2">
+            <span>こんにちは、<%= link_to current_user.name, users_show_path %></span>
         </li>
-        <li class="nav-item">
+        <li class="nav-item px-2 pt-2">
             <%= link_to "ログアウト", destroy_user_session_path, method: 'delete' %>
         </li>
     </ul>
     <% else %>
-    <ul class="navbar-nav mr-auto"> 
+    <ul class="navbar-nav mr-auto">
         <li class="nav-item active px-2">
             <a class="nav-link" href="/">ホーム</a>
         </li>
